@@ -17,7 +17,8 @@ def start_timer():
 @app.after_request
 def log_request(response):
     processing_time = time.time() - request.start_time
-    logger.info(f"{request.method} {request.path} {response.status_code} {processing_time}")
+    client_ip = request.remote_addr
+    logger.info(f"{request.method} {request.path} {response.status_code} {processing_time} {client_ip}")
     return response
 
 
@@ -33,7 +34,7 @@ def proxy():
     if not is_api_key_valid(proxy_api_key):   
         return Response("Invalid Proxy-Api-Key", status=403)
 
-    # API URL Validation    
+    # API URL Validation       
     api_url = request.args.get('api_url')
 
     if not api_url:
