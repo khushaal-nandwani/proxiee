@@ -18,7 +18,7 @@ data = {
 def test_openai_via_proxy():
     response = requests.post(localProxyApi,
                              params={'api_url': 'https://api.openai.com/v1/chat/completions'},
-                             headers={'Proxy-Api-Key': 'khushaal', 'Content-Type': 'application/json', 'Authorization': 'Bearer fake_api_key'},
+                             headers={'Proxy-Api-Key': 'khushaal', 'Content-Type': 'application/json', 'Authorization': 'Bearer api-key'},
                              json=data)
     
     print(response.content)
