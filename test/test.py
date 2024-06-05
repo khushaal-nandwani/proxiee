@@ -27,6 +27,8 @@ def test_post():
                             headers={'username': 'khushaal', 'password': 'khushaal'},
                             json={'title': 'foo', 'body': 'bar', 'userId': 1}
                             )
+    
+    print(response.content)
     assert response.status_code == 201
     assert response.json() == {'id': 101, 'title': 'foo', 'body': 'bar', 'userId': 1}
     
