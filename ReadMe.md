@@ -7,7 +7,7 @@ Proxiee is a straightforward Flask-based proxy server. Clients can request Proxi
 ## Features
 - Supports popular methods - GET, PUT, DELETE, POST.
 - Supports headers and parameters.
-- Logs the server's health by logging the API called, time Proxiee took in complete processing (includes the parent api time), the IP of the Client, method etc.
+- Logs the server's health by logging the API called, time Proxiee took in complete processing (includes the parent api time), the IP of the Client, method etc. into a new log file every midnight along with an analysis tool for log. 
 - Includes a configuration file where permissible APIs and username passwords can be specified, controlling access to Proxiee's functionality.
 
 ## Setup

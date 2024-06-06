@@ -24,7 +24,7 @@ class CoreGSTSpecialHandler(SpecialUrlHandler):
         headers['XYZ'] = 'XYZ2'
 
 
-def get_special_url_handler(api_url) -> SpecialUrlHandler:
+def url_handler_factory(api_url) -> SpecialUrlHandler:
     api_domain = api_url.split('/')[2]
     if api_domain == 'api.openai.com':
         return OpenAISpecialHandler()

@@ -30,3 +30,8 @@ def is_url_special(api_url) -> str:
 def get_config():
     return config
 
+def is_ip_allowed(ip_given):
+    for ip in config['allowed_ips']:
+        if ip == ip_given:
+            return True
+    return False
