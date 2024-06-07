@@ -13,6 +13,7 @@ logger.setLevel(logging.INFO)
 handler = TimedRotatingFileHandler(log_file_name, when='midnight', interval=1, backupCount=7)
 logger.addHandler(handler)
 
+
 def start_log():
     request.start_time = time.time()
 

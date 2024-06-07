@@ -19,16 +19,9 @@ def is_user_valid(username, password):
     return False
 
 
-def is_url_special(api_url) -> str:
-    api_url = api_url.split('/')[2]
-
-    for api in config['special_apis']:
-        if api == api_url:
-            return config['special_apis'][api]
-    return ''
-
 def get_config():
     return config
+
 
 def is_ip_allowed(ip_given):
     for ip in config['allowed_ips']:
