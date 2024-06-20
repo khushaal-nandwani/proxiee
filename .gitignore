@@ -2,3 +2,12 @@
 /test/__pycache__
 /__pycache__
 /__pycache__
+/__pycache__
+/__pycache__
+/logs
+test/__pycache__/test.cpython-312-pytest-8.2.1.pyc
+test/__pycache__/test_openai.cpython-312-pytest-8.2.1.pyc
+__pycache__/special_api.cpython-312.pyc
+__pycache__/main.cpython-312.pyc
+__pycache__/logger.cpython-312.pyc
+__pycache__/configuration.cpython-312.pyc
