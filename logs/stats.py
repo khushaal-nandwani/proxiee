@@ -11,7 +11,11 @@ def print_files(files):
 def get_file(files):
     print_files(files)
     file_num = int(input('Enter the number of the file: '))
+    print('\n')
     return files[file_num-1]
+
+Users = {
+}
 
 def main():
     files = get_files()
@@ -20,30 +24,35 @@ def main():
         return
     file = get_file(files)
 
-    users_data = {}
-    safe = True
     
     with open(file) as f:
         for line in f:
             fields = line.split(',')
             user = fields[0]
-            if user not in users_data:
-                # TODO: A user may switch IP through a day, since log is created everyday. Manage a permanent list. 
-                users_data[user] = {'Count': 0, 'Client_IP': fields[-1].strip(), 'Safe': True}
-            users_data[user]['Count'] += 1
-            if users_data[user]['Client_IP'] != fields[-1].strip():
-                users_data[user]['Safe'] = False
-                print('\n!!!!!!!!!!!!!!!! ALERT !!!!!!!!!!!!!!!!')
-                print(f'{user} is not safe. IP changed from {users_data[user]["Client_IP"]} to {fields[-1].strip()}\n\n')
-                safe = False
-    
-    for user, data in users_data.items():
-        print(f'{user} called {data["Count"]} APIs')
-    
-    if safe:
-        print('\nAll users are safe')
-    else:
-        print('\nSome users are not safe. Check the alerts above')
+
+            # Create a new user and set the ip
+            if user not in Users:
+                Users[user] = {
+                    'Client_IP': fields[-1].strip(),
+                    'Safe': True
+                }
+            # check the ip
+            else:
+                if Users[user]['Client_IP'] != fields[-1].strip():
+                    Users[user]['Safe'] = False
+
+            # Record the API called and count
+            api_called = fields[2].split('/')[2]
+            if api_called not in Users[user]:
+                Users[user][api_called] = 1
+            else:
+                Users[user][api_called] += 1
+            
+    for user in Users:
+        print(f'User: {user}')
+        for key, value in Users[user].items():
+            print(f'{key}: {value}')
+        print('\n')
 
 if __name__ == '__main__':
     main()
