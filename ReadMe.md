@@ -38,8 +38,7 @@ if.api.haskeys = apiKey
 - The request should be made at `http://{yourHost}:{yourPort}/proxy` with the following parameters
     - 'api_url' : The API URL you want to access.
 
-and the following **headers**
-
+- and the following **headers**
     - 'username' : The username you have configured in the myconfig.ini file.
     - 'password' : The password you have configured in the myconfig.ini file.
 
