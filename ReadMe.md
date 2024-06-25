@@ -29,13 +29,17 @@ if.api.haskeys = apiKey
 - `allowed_ips` are the IPs that can call Proxy. 
 
 ## Setup
-- Activate the virtual enviornemnt .venv
+- Create a virtual enviornment using `python -m venv .venv`
+- Activate the virtual enviornment using `source .venv/bin/activate` for linux and `.\.venv\Scripts\activate` for windows.
+- Install the dependecies using `pip install -r requirements.txt`
 - run `waitress-server --host={yourHost} --port={yourPort} main:app` to start the server
 
 ## Making a Request
 - The request should be made at `http://{yourHost}:{yourPort}/proxy` with the following parameters
     - 'api_url' : The API URL you want to access.
-and the following *headers*
+
+and the following **headers**
+
     - 'username' : The username you have configured in the myconfig.ini file.
     - 'password' : The password you have configured in the myconfig.ini file.
 
