@@ -26,8 +26,8 @@ class OpenAISpecialHandler(SpecialUrlHandler):
         data = json.loads(data)
         data['model'] = "gpt-3.5-turbo"
         for message in data['messages']:
-	    if message["role"] == "assistant":
-		continue
+	    # if message["role"] == "assistant":
+		#     continue
             message['role'] = "user"
         return json.dumps(data)
 
