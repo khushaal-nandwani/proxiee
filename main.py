@@ -1,8 +1,7 @@
 from flask import Flask, request, Response
 import requests
-from configuration import get_config
 from logger import start_log, end_log
-from special_api import *
+from special_api import update_headers, update_json_data
 from verify import verify_request
 
 app = Flask(__name__)
@@ -22,12 +21,9 @@ def proxy():
     headers = {key: value for key, value in request.headers if key not in REQ_EXCLUDED_HEADERS}
     api_url = request.args.get('api_url')
 
-    handle_api = url_handler_factory(api_url)
-    special_key = handle_api.get_special_key(get_config())
-    headers = handle_api.add_headers(headers, special_key)
-    data = handle_api.modify_data(request.data)
+    update_headers(headers, api_url)
+    data = update_json_data(request.data, api_url)
     method = request.method
-    
 
     try:
         resp = requests.request(method, api_url, headers=headers, params=request.args, data=data)

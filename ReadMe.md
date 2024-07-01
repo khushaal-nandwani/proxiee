@@ -3,7 +3,7 @@ Proxiee is a straightforward Flask-based proxy server. Clients can request Proxi
 
 ## Features
 - Supports popular methods - GET, PUT, DELETE, POST.
-- Supports headers and parameters.
+- Supports headers and parameters. You can add certain permanent headers on top using the configuration file. For example, this can include authorization keys for certain API. 
 - Logs the server's health by logging the API called, time Proxiee took in complete processing (includes the parent api time), the IP of the Client, method etc. into a new log file every midnight along with an analysis tool for log. 
 - Includes a configuration file where permissible APIs and username passwords can be specified, controlling access to Proxiee's functionality.
 
@@ -17,16 +17,18 @@ api.endpoints.youwanttoaccess = 1
 [users]
 username = password
 
-[special_apis]
-if.api.haskeys = apiKey 
-
 [allowed_ips]
 127.0.0.1 = 1
+
+[headers_for_api.endpoint.com]
+header1 = value
+header2 = value
+
 ```
 - `allowed_apis` are the APIs that can be accessed by the user.
 - `users` are the usernames and passwords that can be used to access the Proxy. 
-- `special_apis` are the APIs that require special keys to be accessed. 
 - `allowed_ips` are the IPs that can call Proxy. 
+- `headers_for_api.endpoint.com` are the headers that will be added to the request when calling api.endpoint.com.
 
 ## Setup
 - Create a virtual enviornment using `python -m venv .venv`
