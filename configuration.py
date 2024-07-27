@@ -11,6 +11,13 @@ def is_ip_allowed(ip_given):
     return False
 
 
+def get_bat_file():
+    for bat_file in config['batch_file']:
+        print(bat_file)
+        return bat_file, config['batch_file'][bat_file]
+    return None, None
+
+
 def is_api_allowed(api_url):
     api_url = api_url.split('/')[2]
 
@@ -39,6 +46,10 @@ def get_headers_for(api_url):
         headers[header] = headers_section[header]
     return headers
 
-
 def get_config():
     return config
+
+
+def _escape_path(path):
+    return path.replace('\\', '\\\\')
+    

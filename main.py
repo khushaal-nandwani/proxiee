@@ -1,5 +1,7 @@
+import subprocess
 from flask import Flask, request, Response
 import requests
+from configuration import get_bat_file
 from logger import start_log, end_log
 from special_api import update_headers, update_json_data
 from verify import verify_request
@@ -39,6 +41,26 @@ def proxy():
     end_log(response, client_ip)
     return response
 
+
+
+@app.route('/merge', methods=['GET'])
+def merge():
+    bat_file, _ = get_bat_file()
+
+    if not bat_file:
+        return Response('Batch File not found', status=500)
+
+    from_remote = request.args.get('from')
+    to_remote = request.args.get('to')
+    branch = request.args.get('branch')
+
+    if not from_remote or not to_remote or not branch:
+        return Response("Missing parameters", status=400)
+
+    bat_command = f'{bat_file} {from_remote} {to_remote} {branch}'
+
+    result = subprocess.run(bat_command, shell=True, check=True, text=True, capture_output=True, timeout=5) 
+    return Response(result.stdout, status=200)
 
 if __name__ == '__main__':
     app.run(debug=True)

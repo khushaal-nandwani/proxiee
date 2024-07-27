@@ -55,5 +55,3 @@ def _verify_api_url(api_url):
         return False, Response("API not allowed", status=403)
     return True, None
     
-
-    
