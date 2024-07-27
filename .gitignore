@@ -11,3 +11,5 @@ __pycache__/special_api.cpython-312.pyc
 __pycache__/main.cpython-312.pyc
 __pycache__/logger.cpython-312.pyc
 __pycache__/configuration.cpython-312.pyc
+/__pycache__
+/test
